@@ -1,0 +1,30 @@
+%h1 make steps
+= form_tag({controller: :steps, action: :get_img}, {method: :get}) do
+  = text_field :keyword, :keyword
+  = submit_tag "create"
+
+= form_tag(controller: :elements, action: :create) do
+  - if @img_urls
+    = radio_button_tag :category, 'Verb'
+    verb
+    = radio_button_tag :category, 'Material'
+    material
+    = radio_button_tag :category, 'Tool'
+    tool
+    - @img_urls.each do |img_url|
+      = image_tag img_url, size: "200x200"
+      = radio_button_tag :url, img_url
+    = text_field_tag :keyword
+    = submit_tag "add"
+
+= link_to 'next step', steps_path, method: :post
+
+- @steps.each_with_index do |step, i|
+  %p
+    = i + 1
+  - step.elements.where(dictionary_type: 'Verb').each do |element|
+    = element.dictionary.body
+  - step.elements.where(dictionary_type: 'Tool').each do |element|
+    = image_tag element.image_url.body, size: "200x200"
+  - step.elements.where(dictionary_type: 'Material').each do |element|
+    = image_tag element.image_url.body, size: "200x200"

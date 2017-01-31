@@ -4,10 +4,8 @@ one:
   dictionary: one
   dictionary_type: Dictionary
   body: MyString
-  element_id: 1
 
 two:
   dictionary: two
   dictionary_type: Dictionary
   body: MyString
-  element_id: 1

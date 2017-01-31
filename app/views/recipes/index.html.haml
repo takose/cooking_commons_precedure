@@ -1,0 +1,10 @@
+%h1 Recipes#index
+
+= form_for @recipe do |f|
+  = f.text_field :name, placeholder: "title"
+  = f.submit
+
+  - @recipes.each do |recipe|
+    %li
+      = recipe.name
+      = link_to "delete", recipe_path(recipe.id), method: :delete
