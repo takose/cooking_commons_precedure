@@ -4,9 +4,10 @@
   = f.text_field :name, placeholder: "title"
   = f.submit
 
-  - @recipes.each do |recipe|
-    %div{class: "flex"}
-      = recipe.name
-      = link_to "show", recipe_path(recipe.id), class: "create show_and_delete_recipe"
-      = link_to "update", recipe_path(recipe.id), class: "update show_and_delete_recipe", method: :patch
-      = link_to "delete", recipe_path(recipe.id), class: "delete show_and_delete_recipe", method: :delete
+%h2 Recipes
+- @recipes.each do |recipe|
+  %div{class: "flex recipe"}
+    = recipe.name
+    = link_to "show", recipe_path(recipe.id), class: "create show_and_delete_recipe"
+    = link_to "update", recipe_path(recipe.id), class: "update show_and_delete_recipe", method: :patch
+    = link_to "delete", recipe_path(recipe.id), class: "delete show_and_delete_recipe", method: :delete

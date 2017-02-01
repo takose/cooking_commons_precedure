@@ -14,10 +14,16 @@ class StepsController < ApplicationController
   def create
     recipe = Recipe.find(session[:recipe_id])
     recipe.steps.create()
+    redirect_to new_step_path
+  end
+
+  def update
+    Step.find(params[:id]).update(step_params)
   end
 
   def destroy
     Step.find(params[:id]).destroy
+    redirect_to new_step_path
   end
 
   def set_val
@@ -30,6 +36,6 @@ class StepsController < ApplicationController
 
   def step_params
     # TODO stepにbodyカラム追加
-    #params.require(:step).premit(:body)
+    params.require(:step).permit(:note)
   end
 end

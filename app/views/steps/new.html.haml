@@ -9,24 +9,30 @@
     %div{class: "index flex"}
       = "#{i + 1}."
       - if verbs.blank?
-        Add verbs!
+        add verbs!
       - verbs.each do |element|
         = element.dictionary.body
       = link_to "delete", step_path(step.id), class: "delete_step delete", method: :delete
     %div{class: :flex}
       %div{class: "material element"}
         - if materials.blank?
-          Add materials!
+          add materials!
         - materials.each do |element|
           = link_to image_tag(element.image_url.body, size: "200x200", class: :delete_image), element_path(element.id), method: :delete
       %div{class: "tool element"}
         - if tools.blank?
-          Add tools!
+          add tools!
         - tools.each do |element|
           - p element
           = link_to image_tag(element.image_url.body, size: "200x200", class: :delete_image), element_path(element.id), method: :delete
+  %p
+    = step.note
 
-%h3 Let's make steps! by search and choice images
+= form_for @step do |f|
+  = f.text_field :note
+  = f.submit 'add note'
+
+%h3 let's make steps! by search and choice images
 %div{class: :search}
   = form_tag({controller: :steps, action: :get_img}, {method: :get}) do
     = text_field :keyword, :keyword
@@ -45,7 +51,6 @@
     = label :category, :verb, '', class: :radio, for: "category_Verb"
     = radio_button_tag :category, 'Material'
     = label :category, :material, '', class: :radio, for: "category_Material"
-
     = radio_button_tag :category, 'Tool'
     = label :category, :tool, '', class: :radio, for: "category_Tool"
   = text_field_tag :keyword, @word
