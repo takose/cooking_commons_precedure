@@ -1,0 +1,19 @@
+%h1
+  = @recipe.name
+
+- @recipe.steps.each_with_index do |step, i|
+  - verbs = step.elements.where(dictionary_type: 'Verb')
+  - materials = step.elements.where(dictionary_type: 'Material')
+  - tools = step.elements.where(dictionary_type: 'Tool')
+  %div{class: "step"}
+    %div{class: "index flex"}
+      = "#{i + 1}."
+      - verbs.each do |element|
+        = element.dictionary.body
+    %div{class: :flex}
+      %div{class: "material element"}
+        - materials.each do |element|
+          = image_tag(element.image_url.body, size: "200x200", class: :image)
+      %div{class: "tool element"}
+        - tools.each do |element|
+          = image_tag(element.image_url.body, size: "200x200", class: :image)

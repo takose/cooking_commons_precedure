@@ -1,10 +1,12 @@
-%h1 Recipes#index
+%h1 Let's make recipe!
 
 = form_for @recipe do |f|
   = f.text_field :name, placeholder: "title"
   = f.submit
 
   - @recipes.each do |recipe|
-    %li
+    %div{class: "flex"}
       = recipe.name
-      = link_to "delete", recipe_path(recipe.id), method: :delete
+      = link_to "show", recipe_path(recipe.id), class: "create show_and_delete_recipe"
+      = link_to "update", recipe_path(recipe.id), class: "update show_and_delete_recipe", method: :patch
+      = link_to "delete", recipe_path(recipe.id), class: "delete show_and_delete_recipe", method: :delete

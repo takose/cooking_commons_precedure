@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+.delete{
+  background: #EA5E56;
+  color: #fff;
+  display: block;
+}
+
+.create {
+  background: #7EB2E5;
+  color: #fff;
+  display: block;
+}
+
+.update {
+  background: #FF9636;
+  color: #fff;
+  display: block;
+}
+
+a {
+  text-align: center;
+  text-decoration: none;
+}

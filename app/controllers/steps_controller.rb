@@ -2,10 +2,12 @@ require 'Recipe2pic.rb'
 class StepsController < ApplicationController
   before_action :set_val, only: [:new, :get_img]
   def new
+    @word ||= ""
   end
 
   def get_img
-    @img_urls = get_pic(params[:keyword][:keyword])
+    @word = params[:keyword][:keyword]
+    @img_urls = get_pic(@word)
     render steps_new_path
   end
 
@@ -15,6 +17,7 @@ class StepsController < ApplicationController
   end
 
   def destroy
+    Step.find(params[:id]).destroy
   end
 
   def set_val

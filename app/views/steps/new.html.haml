@@ -1,30 +1,55 @@
-%h1 make steps
-= form_tag({controller: :steps, action: :get_img}, {method: :get}) do
-  = text_field :keyword, :keyword
-  = submit_tag "create"
+%h1
+  = @recipe.name
+
+- @steps.each_with_index do |step, i|
+  - verbs = step.elements.where(dictionary_type: 'Verb')
+  - materials = step.elements.where(dictionary_type: 'Material')
+  - tools = step.elements.where(dictionary_type: 'Tool')
+  %div{class: "step"}
+    %div{class: "index flex"}
+      = "#{i + 1}."
+      - if verbs.blank?
+        Add verbs!
+      - verbs.each do |element|
+        = element.dictionary.body
+      = link_to "delete", step_path(step.id), class: "delete_step delete", method: :delete
+    %div{class: :flex}
+      %div{class: "material element"}
+        - if materials.blank?
+          Add materials!
+        - materials.each do |element|
+          = link_to image_tag(element.image_url.body, size: "200x200", class: :delete_image), element_path(element.id), method: :delete
+      %div{class: "tool element"}
+        - if tools.blank?
+          Add tools!
+        - tools.each do |element|
+          - p element
+          = link_to image_tag(element.image_url.body, size: "200x200", class: :delete_image), element_path(element.id), method: :delete
+
+%h3 Let's make steps! by search and choice images
+%div{class: :search}
+  = form_tag({controller: :steps, action: :get_img}, {method: :get}) do
+    = text_field :keyword, :keyword
+    = submit_tag "search img"
 
 = form_tag(controller: :elements, action: :create) do
   - if @img_urls
+    %div{class: "flex"}
+      - @img_urls.each_with_index do |img_url, i|
+        %div{class: "image"}
+          = radio_button_tag :url, img_url
+          = label_tag "url_#{img_url}", 'Use', class: "radio", id: "img-radio"
+          = image_tag img_url, height: "200"
+  %div
     = radio_button_tag :category, 'Verb'
-    verb
+    = label :category, :verb, '', class: :radio, for: "category_Verb"
     = radio_button_tag :category, 'Material'
-    material
+    = label :category, :material, '', class: :radio, for: "category_Material"
+
     = radio_button_tag :category, 'Tool'
-    tool
-    - @img_urls.each do |img_url|
-      = image_tag img_url, size: "200x200"
-      = radio_button_tag :url, img_url
-    = text_field_tag :keyword
-    = submit_tag "add"
+    = label :category, :tool, '', class: :radio, for: "category_Tool"
+  = text_field_tag :keyword, @word
+  = submit_tag "add"
 
-= link_to 'next step', steps_path, method: :post
+= link_to 'next step', steps_path, class: "create_step create", method: :post
 
-- @steps.each_with_index do |step, i|
-  %p
-    = i + 1
-  - step.elements.where(dictionary_type: 'Verb').each do |element|
-    = element.dictionary.body
-  - step.elements.where(dictionary_type: 'Tool').each do |element|
-    = image_tag element.image_url.body, size: "200x200"
-  - step.elements.where(dictionary_type: 'Material').each do |element|
-    = image_tag element.image_url.body, size: "200x200"

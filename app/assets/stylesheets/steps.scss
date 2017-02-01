@@ -1,3 +1,170 @@
 // Place all the styles related to the Steps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.container{
+  padding-left: 70px;
+}
+
+.flex{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+}
+$iconColor: #53b300;
+
+input[type=radio], input[type=checkbox] {
+  display: none;
+}
+
+.delete_step {
+  margin: 6px 10px;
+  border-radius: 5px;
+  width: 70px;
+  font-size: 15px;
+}
+
+.create_step {
+  border-radius: 5px;
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.step{
+  margin-bottom: 20px;
+}
+
+input[type=text] {
+  outline: none;
+  border:0;
+  font-size:1.3em;
+  font-family:Arial, sans-serif;
+  color:#aaa;
+  border:solid 1px #ccc;
+  margin:0 0 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+
+  &:hover {
+    border:solid 1px #EEA34A;
+  }
+  &:focus {
+    box-shadow: 0 0 3px #EEA34A;
+    border: solid 1px #EEA34A;
+  }
+}
+
+input[type=submit] {
+  margin-left: 10px;
+  height: 28px;
+  width: 100px;
+  border-radius: 5px;
+  background-color: #ccc;
+  color: #fff
+}
+
+#img-radio{
+  position: absolute;
+  margin-top: 150px;
+}
+
+img.delete_image{
+  border-radius: 10px;
+  &:hover {
+    background-color: #ccc;
+    &:after {
+      background-color: #777;
+    }
+  }
+}
+
+.index{
+  font-size: 20px;
+  color: #260000
+}
+
+.element{
+  height: 200px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 10px;
+  min-width: 200px;
+  text-align: center;
+  font-size: 20px;
+  color: #777;
+}
+
+.search{
+  margin-bottom: 10px;
+}
+
+.tool{
+  background-color: beige;
+}
+
+.material{
+  background-color: powderblue;
+}
+
+label.image{
+  width: 200px;
+  height: 200px;
+}
+
+.radio, .checkbox {
+  box-sizing: border-box;
+  -webkit-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+  position: relative;
+  display: inline-block;
+  margin: 10px 0;
+  padding: 12px 12px 12px 42px;
+  border-radius: 8px;
+  background-color: #f6f7f8;
+  vertical-align: middle;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e2edd7;
+    &:after {
+      border-color: $iconColor;
+    }
+  }
+
+  &:after {
+    -webkit-transition: border-color 0.2s linear;
+    transition: border-color 0.2s linear;
+    position: absolute;
+    top: 50%;
+    left: 17px;
+    display: block;
+    margin-top: -8px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #bbb;
+    border-radius: 6px;
+    content: '';
+  }
+}
+.radio {
+  &:before {
+    -webkit-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    display: block;
+    margin-top: -5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $iconColor;
+    content: '';
+    opacity: 0;
+    input[type=radio]:checked + & {
+      opacity: 1;
+    }
+  }
+}

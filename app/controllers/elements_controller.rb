@@ -17,6 +17,11 @@ class ElementsController < ApplicationController
     redirect_to steps_new_path
   end
 
+  def destroy
+    Element.find(params[:id]).destroy
+    redirect_to new_step_path
+  end
+
   def material(step, keyword, url)
     @material = Material.find_by(body: keyword)
     unless @material
