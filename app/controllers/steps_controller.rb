@@ -19,6 +19,7 @@ class StepsController < ApplicationController
 
   def update
     Step.find(params[:id]).update(step_params)
+    redirect_to new_step_path
   end
 
   def destroy

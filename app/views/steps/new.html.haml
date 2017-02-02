@@ -16,17 +16,21 @@
     %div{class: :flex}
       %div{class: "material element"}
         - if materials.blank?
-          add materials!
+          %div{class: :label}
+            %label{for: :keyword_keyword, class: "label"}
+              add materials!
         - materials.each do |element|
-          = link_to image_tag(element.image_url.body, size: "200x200", class: :delete_image), element_path(element.id), method: :delete
+          = link_to image_tag(element.image_url.body, class: :delete_image), element_path(element.id), method: :delete
       %div{class: "tool element"}
         - if tools.blank?
-          add tools!
+          %div{class: :label}
+            %label{for: :keyword_keyword, class: "label"}
+              add tools!
         - tools.each do |element|
           - p element
-          = link_to image_tag(element.image_url.body, size: "200x200", class: :delete_image), element_path(element.id), method: :delete
-  %p
-    = step.note
+          = link_to image_tag(element.image_url.body, class: :delete_image), element_path(element.id), method: :delete
+    %p{class: :note}
+      = step.note
 
 = form_for @step do |f|
   = f.text_field :note
