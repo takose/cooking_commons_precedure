@@ -11,13 +11,13 @@
       - verbs.each do |element|
         = element.dictionary.body
     %div{class: :flex}
-      - unless materials.blank?
-        %div{class: "material element"}
-          - materials.each do |element|
-            = image_tag(element.image_url.body, class: :image)
       - unless tools.blank?
         %div{class: "tool element"}
           - tools.each do |element|
+            = image_tag(element.image_url.body, class: :image)
+      - unless materials.blank?
+        %div{class: "material element"}
+          - materials.each do |element|
             = image_tag(element.image_url.body, class: :image)
     %p{class: "note"}
       = step.note
