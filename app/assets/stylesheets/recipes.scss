@@ -2,8 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .show_and_delete_recipe{
-  width: 100px;
-  margin: 6px 10px;
+  padding: 0 10px;
+  margin-left: 10px;
   border-radius: 5px;
   font-size: 15px;
+}
+
+.recipe{
+  margin-bottom: 10px;
 }
